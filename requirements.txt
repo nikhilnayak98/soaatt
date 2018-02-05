@@ -1,0 +1,6 @@
+Flask
+gunicorn
+httplib2
+urllib3
+getpass
+json
