@@ -33,9 +33,9 @@ def homepage():
 		return ('Length of Login content - ', len(logincontent))
 		
 	if(len(logincontent) > 112):
-		return ('Login Successful!')
+		print('Login Successful!')
 	
-	return ('Login content - ', logincontent)
+	print ('Login content - ', logincontent)
 	
 	body = json.dumps({'registerationid':reglov})
 
@@ -45,7 +45,7 @@ def homepage():
 	if(DEBUG):
 		print('Response Status - ', response.status)
 		
-	return (attendancecontent)
+	return (logincontent + attendancecontent)
 		
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	if(DEBUG):
