@@ -29,14 +29,13 @@ def homepage():
 	response, logincontent = http.request(URL + '/login', 'POST', headers=headers, body=body)
 
 	if(DEBUG):
-		print('Response Status - ', response.status)
-		print('Length of Login content - ', len(logincontent))
+		return ('Response Status - ', response.status)
+		return ('Length of Login content - ', len(logincontent))
 		
 	if(len(logincontent) > 112):
-		print('Login Successful!')
+		return ('Login Successful!')
 	
-	if(DEBUG):
-		print('Login content - ', logincontent)
+	return ('Login content - ', logincontent)
 	
 	body = json.dumps({'registerationid':reglov})
 
@@ -52,7 +51,7 @@ def homepage():
 	if(DEBUG):
 		print(logoutcontent)
 	else:
-		print("Username or Password may be wrong!")
+		return ("Username or Password may be wrong!")
 		if(DEBUG):
 			print('Response Status - ', response.status)
 
