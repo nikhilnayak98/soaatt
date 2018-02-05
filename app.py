@@ -19,8 +19,8 @@ def homepage():
 	URL = 'http://111.93.164.203/CampusPortalSOA'
 	reglov = 'ITERRETD1711A0000002'
 
-	username = input('Username - ')
-	password = getpass.getpass('Password - ')
+	username = '1641012112'
+	password = 'sikujyoti'
 
 	body = json.dumps({'username':username,'password':password})
 
@@ -45,7 +45,7 @@ def homepage():
 	if(DEBUG):
 		print('Response Status - ', response.status)
 		
-	print(attendancecontent)
+	return (attendancecontent)
 		
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	if(DEBUG):
@@ -54,10 +54,6 @@ def homepage():
 		print("Username or Password may be wrong!")
 		if(DEBUG):
 			print('Response Status - ', response.status)
-
-    return """
-    
-    """.format(time=the_time)
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
