@@ -10,11 +10,8 @@ http = httplib2.Http()
 
 @app.route('/')
 def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
-    DEBUG = 0
-	if(len(sys.argv) >= 2):
-		DEBUG = 1
-	
+	the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+	DEBUG = 0
 	# endpoint
 	URL = 'http://111.93.164.203/CampusPortalSOA'
 	reglov = 'ITERRETD1711A0000002'
@@ -56,4 +53,4 @@ def homepage():
 			print('Response Status - ', response.status)
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+	app.run(debug=True, use_reloader=True)
