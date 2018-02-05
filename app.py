@@ -2,11 +2,11 @@ import sys
 import json
 import getpass
 import httplib2
-
-http = httplib2.Http()
 from flask import Flask
 from datetime import datetime
 app = Flask(__name__)
+
+http = httplib2.Http()
 
 @app.route('/')
 def homepage():
@@ -34,22 +34,22 @@ def homepage():
 	if(len(logincontent) > 112):
 		print('Login Successful!')
 	
-		if(DEBUG):
-			print('Login content - ', logincontent)
+	if(DEBUG):
+		print('Login content - ', logincontent)
 	
-		body = json.dumps({'registerationid':reglov})
+	body = json.dumps({'registerationid':reglov})
 
-		headers = {'Cookie': response['set-cookie']}
-		response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
+	headers = {'Cookie': response['set-cookie']}
+	response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
 		
-		if(DEBUG):
-			print('Response Status - ', response.status)
+	if(DEBUG):
+		print('Response Status - ', response.status)
 		
-		print(attendancecontent)
+	print(attendancecontent)
 		
-		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
-		if(DEBUG):
-			print(logoutcontent)
+	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+	if(DEBUG):
+		print(logoutcontent)
 	else:
 		print("Username or Password may be wrong!")
 		if(DEBUG):
