@@ -2,13 +2,17 @@ import sys
 import json
 import getpass
 import httplib2
-from flask import Flask
+from flask import Flask, request, render_template
 from datetime import datetime
 app = Flask(__name__)
 
 http = httplib2.Http()
 
 @app.route('/')
+def my_form():
+    return render_template('my-form.html')
+
+@app.route('/', methods=['POST'])
 def homepage():
 	the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 	DEBUG = 0
@@ -16,8 +20,8 @@ def homepage():
 	URL = 'http://111.93.164.203/CampusPortalSOA'
 	reglov = 'ITERRETD1711A0000002'
 
-	username = '1641012112'
-	password = 'sikujyoti'
+	username = request.form['username']
+	password = request.form['password']
 
 	body = json.dumps({'username':username,'password':password})
 
