@@ -2,7 +2,7 @@ import sys
 import json
 import getpass
 import httplib2
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from datetime import datetime
 app = Flask(__name__)
 
@@ -45,7 +45,7 @@ def homepage():
 	if(DEBUG):
 		print('Response Status - ', response.status)
 		
-	return (attendancecontent)
+	return jsonify(attendancecontent)
 		
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	if(DEBUG):
