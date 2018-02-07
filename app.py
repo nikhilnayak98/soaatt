@@ -44,7 +44,7 @@ def homepage():
 		data_size = len(data["griddata"])
 		
 		for i in range(0, data_size): 
-			message = data["griddata"][i]["subject"] + ' : ' + data["griddata"][i]["TotalAttandence"] + '%' + ' Last Updated on -' + data["griddata"][i]["lastupdatedon"]
+			message += data["griddata"][i]["subject"] + ' : ' + data["griddata"][i]["TotalAttandence"] + '%' + ' Last Updated on -' + data["griddata"][i]["lastupdatedon"]
 
 		return message
 		
