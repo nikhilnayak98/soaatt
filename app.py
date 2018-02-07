@@ -33,7 +33,9 @@ def homepage():
 		
 		logindata = json.loads(logincontent)
 		
-		message = 'Hello ' + logindata["name"] + '!<br>'
+		message = '<html> <head> <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <link type="text/css" rel="stylesheet" href="static/material/css/materialize.css" media="screen,projection"/> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head> <body>'
+		
+		message += 'Hello ' + logindata["name"] + '!<br>'
 	
 		body = json.dumps({'registerationid':reglov})
 
@@ -43,12 +45,12 @@ def homepage():
 		data = json.loads(attendancecontent)
 		data_size = len(data["griddata"])
 		
-		message += '<style> table, th, td { border: 1px solid black; } </style> <table > <tr> <th>Subject</th> <th>Attendance</th> <th>Last updated on</th> </tr>'
+		message += '<table class="striped"> <tr> <th>Subject</th> <th>Attendance</th> <th>Last updated on</th> </tr>'
 		
 		for i in range(0, data_size): 
 			message += '<tr><td>' + data["griddata"][i]["subject"] + '</td><td>' + str(data["griddata"][i]["TotalAttandence"]) + '%</td>' + '<td>' + data["griddata"][i]["lastupdatedon"] + '</td></tr>'
 		
-		message += '</table>'
+		message += '</table><script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script type="text/javascript" src="static/material/js/materialize.js"></script> </body> </html>'
 		return message
 		
 		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
