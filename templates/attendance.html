@@ -3,10 +3,12 @@
                 <th>Subject</th>
                 <th>Attendance</th>
         </tr>
-        {% for k, v in data.items() %}
+        {% for mainkey in data %}
+        {% for k, v in data["griddata"][mainkey].items() %}
                 <tr>
-                        <td>{{ k[0] }}</td>
-                        <td>{{ v[0] }}</td>
+                        <td>{{ k["subject"] }}</td>
+                        <td>{{ v["TotalAttandence"] }}</td>
                 </tr>
+        {% endfor %}
         {% endfor %}
 </table>
