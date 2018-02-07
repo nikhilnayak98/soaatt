@@ -4,7 +4,7 @@
                 <th>Attendance</th>
         </tr>
         {% for mainkey in data %}
-        {% for k, v in data["griddata"][mainkey].items() %}
+        {% for k, v in data[0][mainkey].items() %}
                 <tr>
                         <td>{{ k["subject"] }}</td>
                         <td>{{ v["TotalAttandence"] }}</td>
