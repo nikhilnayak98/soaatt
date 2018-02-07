@@ -27,29 +27,25 @@ def homepage():
 
 	headers = {'Content-type': 'application/json'}
 	response, logincontent = http.request(URL + '/login', 'POST', headers=headers, body=body)
-
-	if(DEBUG):
-		return ('Response Status - ', response.status)
-		return ('Length of Login content - ', len(logincontent))
 		
 	if(len(logincontent) > 112):
 		print('Login Successful!')
+		
+		logindata = json.loads(logincontent)
+		
+		print('Hello', logindata["name"])
 	
-	print ('Login content - ', logincontent)
-	
-	body = json.dumps({'registerationid':reglov})
+		body = json.dumps({'registerationid':reglov})
 
-	headers = {'Cookie': response['set-cookie']}
-	response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
-		
-	if(DEBUG):
-		print('Response Status - ', response.status)
+		headers = {'Cookie': response['set-cookie']}
+		response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
 	
-	return (attendancecontent)
+		data = json.loads(attendancecontent)
+		data_size = len(data["griddata"])
+
+		return render_template("attendance.html", data=data)
 		
-	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
-	if(DEBUG):
-		print(logoutcontent)
+		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	else:
 		return ("Username or Password may be wrong!")
 		if(DEBUG):
