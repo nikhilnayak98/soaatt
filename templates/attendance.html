@@ -4,10 +4,10 @@
                 <th>Attendance</th>
         </tr>
         {% for mainkey in data %}
-        {% for k, v in data[0][mainkey].items() %}
+        {% for k, v in data[mainkey].items() %}
                 <tr>
-                        <td>{{ k["subject"] }}</td>
-                        <td>{{ v["TotalAttandence"] }}</td>
+                        <td>{{ k[mainkey]["subject"] }}</td>
+                        <td>{{ v[mainkey]["TotalAttandence"] }}</td>
                 </tr>
         {% endfor %}
         {% endfor %}
