@@ -43,8 +43,12 @@ def homepage():
 		data = json.loads(attendancecontent)
 		data_size = len(data["griddata"])
 		
+		message += '<style> table, th, td { border: 1px solid black; } </style> <table > <tr> <th>Subject</th> <th>Attendance</th> <th>Last updated on</th> </tr><tr>'
+		
 		for i in range(0, data_size): 
-			message += '<br>' + data["griddata"][i]["subject"] + ' : ' + str(data["griddata"][i]["TotalAttandence"]) + '%' + ' Last updated on -' + data["griddata"][i]["lastupdatedon"]
+			message += '<td>' + data["griddata"][i]["subject"] + '</td><td>' + str(data["griddata"][i]["TotalAttandence"]) + '%</td>' + '<td>' + data["griddata"][i]["lastupdatedon"] + '</td>'
+		
+		message += '</tr></table>'
 		return message
 		
 		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
