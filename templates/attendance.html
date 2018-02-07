@@ -10,7 +10,7 @@
         </tr>
         {% for k, v in data.items() %}
                 <tr>
-                        <td>{{ k[0]["subject"] }}</td>
+                        <td>{{ k[0][k]["subject"] }}</td>
                         <td>{{ v }}</td>
                 </tr>
         {% endfor %}
