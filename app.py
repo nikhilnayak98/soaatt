@@ -45,7 +45,7 @@ def homepage():
 	if(DEBUG):
 		print('Response Status - ', response.status)
 		
-	return json.dumps(attendancecontent)
+	return (attendancecontent)
 		
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	if(DEBUG):
