@@ -44,10 +44,8 @@ def homepage():
 		
 	if(DEBUG):
 		print('Response Status - ', response.status)
-	
-	mydata = attendancecontent.get("grid")
-	
-	return (mydata)
+	d = json.loads(attendancecontent)
+	return (d['grid'][0])
 		
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	if(DEBUG):
