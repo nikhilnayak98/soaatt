@@ -1,0 +1,12 @@
+<table>
+        <tr>
+                <th>Subject</th>
+                <th>Attendance</th>
+        </tr>
+        {% for k, v in data.items() %}
+                <tr>
+                        <td>{{ k }}</td>
+                        <td>{{ v }}</td>
+                </tr>
+        {% endfor %}
+</table>
