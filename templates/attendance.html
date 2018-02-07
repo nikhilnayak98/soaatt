@@ -9,11 +9,11 @@
                 <th>Attendance</th>
         </tr>
         {% for k, v in data.items() %}
-                    {% for i, j in v.items() %}
+                    {% for i, j in v %}
 
                 <tr>
-                        <td>{{ i }}</td>
-                        <td>{{ j }}</td>
+                        <td>{{ i[0] }}</td>
+                        <td>{{ j[0] }}</td>
                 </tr>
                      {% endfor %}
         {% endfor %}
