@@ -47,7 +47,7 @@ def homepage():
 	
 	mydata = attendancecontent.get("grid")
 	
-	return (attendancecontent)
+	return (mydata)
 		
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	if(DEBUG):
