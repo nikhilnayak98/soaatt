@@ -3,12 +3,10 @@
                 <th>Subject</th>
                 <th>Attendance</th>
         </tr>
-        {% for mainkey in data %}
-        {% for k, v in data[mainkey].items() %}
+        {% for k, v in data[0].items() %}
                 <tr>
                         <td>{{ k }}</td>
                         <td>{{ v }}</td>
                 </tr>
-        {% endfor %}
         {% endfor %}
 </table>
