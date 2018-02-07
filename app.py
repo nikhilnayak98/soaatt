@@ -33,7 +33,7 @@ def homepage():
 		
 		logindata = json.loads(logincontent)
 		
-		print('Hello', logindata["name"])
+		message = 'Hello ' + logindata["name"] + '!\n'
 	
 		body = json.dumps({'registerationid':reglov})
 
@@ -42,8 +42,11 @@ def homepage():
 	
 		data = json.loads(attendancecontent)
 		data_size = len(data["griddata"])
+		
+		for i in range(0, data_size): 
+			message = data["griddata"][i]["subject"] + ' : ' + data["griddata"][i]["TotalAttandence"] + '%' + ' Last Updated on -' + data["griddata"][i]["lastupdatedon"]
 
-		return render_template("attendance.html", data=data)
+		return message
 		
 		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	else:
