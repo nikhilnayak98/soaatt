@@ -6,8 +6,8 @@
         {% for mainkey in data %}
         {% for k, v in data[mainkey].items() %}
                 <tr>
-                        <td>{{ k[mainkey]["subject"] }}</td>
-                        <td>{{ v[mainkey]["TotalAttandence"] }}</td>
+                        <td>{{ k[mainkey][1] }}</td>
+                        <td>{{ v[mainkey][2] }}</td>
                 </tr>
         {% endfor %}
         {% endfor %}
