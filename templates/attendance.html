@@ -9,9 +9,12 @@
                 <th>Attendance</th>
         </tr>
         {% for k, v in data.items() %}
+                    {% for i, j in v.items() %}
+
                 <tr>
-                        <td>{{ k[0][0]["subject"] }}</td>
-                        <td>{{ v }}</td>
+                        <td>{{ i }}</td>
+                        <td>{{ j }}</td>
                 </tr>
+                     {% endfor %}
         {% endfor %}
 </table>
