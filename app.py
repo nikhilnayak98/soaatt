@@ -10,7 +10,7 @@ http = httplib2.Http()
 
 @app.route('/')
 def my_form():
-    return render_template('my-form.html')
+    return render_template('login.html')
 
 @app.route('/', methods=['POST'])
 def homepage():
