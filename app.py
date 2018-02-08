@@ -51,7 +51,7 @@ def homepage():
 		htmlbody += '<table class="bordered"> <tr> <th>Subject</th> <th>Theory</th> <th>Attendance</th> <th>Last updated on</th> </tr>'
 		
 		for i in range(0, data_size): 
-			htmlbody += '<tr><td>' + data["griddata"][i]["subject"] + '</td><td>' + '<tr><td>' + data["griddata"][i]["Latt"] + '</td><td>' + str(data["griddata"][i]["TotalAttandence"]) + '%</td>' + '<td>' + data["griddata"][i]["lastupdatedon"] + '</td></tr>'
+			htmlbody += '<tr><td>' + data["griddata"][i]["subject"] + '</td><td>' + data["griddata"][i]["Latt"] + '</td><td>' + str(data["griddata"][i]["TotalAttandence"]) + '%</td>' + '<td>' + data["griddata"][i]["lastupdatedon"] + '</td></tr>'
 		
 		htmlbody += '</table></div></center>'
 		
