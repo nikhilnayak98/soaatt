@@ -14,7 +14,7 @@ body = ''
 def my_form():
 	return render_template('login.html', error=0)
 
-@app.route('/logout')
+@current_app.route('/logout')
 def logout():
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	return render_template('login.html', error=0)
