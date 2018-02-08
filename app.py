@@ -11,10 +11,6 @@ http = httplib2.Http()
 def my_form():
 	return render_template('login.html', error=0)
 
-@app.route('/logout')
-def calllogout():
-	return logout()
-
 @app.route('/', methods=['POST'])
 def homepage():
 
@@ -71,6 +67,10 @@ def homepage():
 		return render_template('login.html', error=error)
 		if(DEBUG):
 			print('Response Status - ', response.status)
+			
+@app.route('/logout')
+def calllogout():
+	return homepage.logout()
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
