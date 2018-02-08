@@ -28,8 +28,8 @@ def homepage():
 	reglov = 'ITERRETD1711A0000002'
 	
 	# global var
-	global headers
-	global body
+	#global headers
+	#global body
 	
 	# html content
 	htmlcontent = '<html> <head> <title>Attendance Info</title><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <link type="text/css" rel="stylesheet" href="static/material/css/materialize.css" media="screen,projection"/> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head> <body>'
