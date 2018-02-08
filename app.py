@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 http = httplib2.Http()
 
-headers = ''
-body = ''
+headers = 0
+body = 0
 
 @app.route('/')
 def my_form():
