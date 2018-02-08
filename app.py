@@ -11,11 +11,6 @@ http = httplib2.Http()
 def my_form():
 	return render_template('login.html', error=0)
 
-@app.route('/logout')
-def logout():
-	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
-	return render_template('login.html', error=0)
-
 @app.route('/', methods=['POST'])
 def homepage():
 
@@ -63,8 +58,11 @@ def homepage():
 		htmlcontent += htmlbody + htmlfooter
 		
 		return (htmlcontent)
-		
-		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+	
+		@app.route('/logout')
+		def logout():
+			response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+			return render_template('login.html', error=0)
 	else:
 		error = 1
 		return render_template('login.html', error=error)
