@@ -9,7 +9,12 @@ http = httplib2.Http()
 
 @app.route('/')
 def my_form():
-    return render_template('login.html', error=0)
+	return render_template('login.html', error=0)
+
+@app.route('/logout')
+def my_form():
+	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+	return render_template('login.html', error=0)
 
 @app.route('/', methods=['POST'])
 def homepage():
@@ -37,7 +42,7 @@ def homepage():
 		
 		logindata = json.loads(logincontent)
 		
-		htmlbody = '<h3>Hello ' + logindata["name"].lower().title() + '!</h3><br>'
+		htmlbody = '<h3>Hello ' + logindata["name"].lower().title() + '!</h3><br><img src="' + logindata["PersonalInfo.svg"] + "></img>'
 	
 		body = json.dumps({'registerationid':reglov})
 
