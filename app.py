@@ -71,7 +71,7 @@ def homepage():
 	
 @app.route('/logout')
 def logout():
-  	return redirect(url_for('index'))
+  	return redirect(url_for(''))
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
