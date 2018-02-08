@@ -2,7 +2,7 @@ import sys
 import json
 import getpass
 import httplib2
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 
 http = httplib2.Http()
@@ -72,7 +72,7 @@ def homepage():
 	
 @app.route('/logout')
 def logout():
-  	return redirect(url_for(my_form))
+  	return redirect(url_for('my_form'))
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
