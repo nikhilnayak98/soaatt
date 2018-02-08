@@ -2,7 +2,7 @@ import sys
 import json
 import getpass
 import httplib2
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template
 app = Flask(__name__)
 
 http = httplib2.Http()
@@ -14,9 +14,8 @@ headers = 0
 body = 0
 
 @app.route('/')
-@app.route('/index')
-def my_form(msghandler=0):
-	return render_template('login.html', msghandler=msghandler)
+def my_form():
+	return render_template('login.html', msghandler=0)
 
 @app.route('/', methods=['POST'])
 def homepage():
@@ -46,6 +45,7 @@ def homepage():
 		
 		# html body
 		htmlbody = '<h3>Hello ' + logindata["name"].lower().title() + '!</h3><br>'
+		htmlbody += '<img src="' + logindata["0000RTID1006A0000029"] + '"></img>'
 	
 		body = json.dumps({'registerationid':reglov})
 
@@ -65,14 +65,12 @@ def homepage():
 		
 		htmlcontent += htmlbody + htmlfooter
 		
+		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+		
 		return (htmlcontent)
 	else:
 		error = 1
 		return render_template('login.html', msghandler=error)
-	
-@app.route('/logout')
-def logout():
-  	return redirect(url_for('my_form', msghandler=2))
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
