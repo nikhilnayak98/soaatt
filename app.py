@@ -68,6 +68,11 @@ def homepage():
 	else:
 		error = 1
 		return render_template('login.html', error=error)
+	
+@app.route('/logout')
+def logout():
+	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+  	return render_template('login.html', error=0)
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
