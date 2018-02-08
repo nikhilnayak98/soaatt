@@ -14,8 +14,9 @@ headers = 0
 body = 0
 
 @app.route('/')
-def my_form(handlercode=0):
-	return render_template('login.html', msghandler=handlercode)
+@app.route('/index')
+def my_form(msghandler=0):
+	return render_template('login.html', msghandler=msghandler)
 
 @app.route('/', methods=['POST'])
 def homepage():
@@ -71,7 +72,7 @@ def homepage():
 	
 @app.route('/logout')
 def logout():
-  	return redirect(url_for(''))
+  	return redirect(url_for('my_form', msghandler=2))
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
