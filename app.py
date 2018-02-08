@@ -9,7 +9,7 @@ http = httplib2.Http()
 
 @app.route('/')
 def my_form():
-    return render_template('login.html')
+    return render_template('login.html', error=0)
 
 @app.route('/', methods=['POST'])
 def homepage():
@@ -61,7 +61,7 @@ def homepage():
 		
 		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	else:
-		error = '<script>Materialize.toast('Username or Password may be wrong!', 4000);</script>'
+		error = 1
 		return render_template('login.html', error=error)
 		if(DEBUG):
 			print('Response Status - ', response.status)
