@@ -7,9 +7,6 @@ app = Flask(__name__)
 
 http = httplib2.Http()
 
-headers = ''
-body = ''
-
 @app.route('/')
 def my_form():
 	return render_template('login.html', error=0)
@@ -21,10 +18,6 @@ def homepage():
 	# endpoint
 	URL = 'http://111.93.164.203/CampusPortalSOA'
 	reglov = 'ITERRETD1711A0000002'
-	
-	# global var
-	global body
-	global headers
 	
 	# html content
 	htmlcontent = '<html> <head> <title>Attendance Info</title><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <link type="text/css" rel="stylesheet" href="static/material/css/materialize.css" media="screen,projection"/> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head> <body>'
