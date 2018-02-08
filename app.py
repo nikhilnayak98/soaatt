@@ -47,12 +47,13 @@ def homepage():
 		data = json.loads(attendancecontent)
 		data_size = len(data["griddata"])
 		
-		htmlbody += '<table class="striped"> <tr> <th>Subject</th> <th>Attendance</th> <th>Last updated on</th> </tr>'
+		htmlbody += '<center><div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">'
+		htmlbody += '<table class="bordered"> <tr> <th>Subject</th> <th>Attendance</th> <th>Last updated on</th> </tr>'
 		
 		for i in range(0, data_size): 
 			htmlbody += '<tr><td>' + data["griddata"][i]["subject"] + '</td><td>' + str(data["griddata"][i]["TotalAttandence"]) + '%</td>' + '<td>' + data["griddata"][i]["lastupdatedon"] + '</td></tr>'
 		
-		htmlbody += '</table>'
+		htmlbody += '</table></div></center>'
 		
 		htmlcontent += htmlbody + htmlfooter
 		
