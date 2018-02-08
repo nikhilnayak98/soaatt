@@ -44,7 +44,7 @@
     <center>
       <div class="section"></div>
 
-      <h5 class="indigo-text">Login</h5>
+      <h5 class="black-text">Login</h5>
       <div class="section"></div>
 
       <div class="container">
@@ -89,10 +89,13 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   <script>
-    var handleerror = {{ error }};
-    if(handleerror == 1) {
-      handlerror = 0;
+    var msghandler = {{ msghandler }};
+    if(msghandler == 1) {
+      msghandler = 0;
       Materialize.toast('Username or Password may be wrong!', 4000);
+    } else if(msghandler == 2) {
+      msghandler = 0;
+      Materialize.toast('You have been logged out!', 4000);
     }
   </script>
 </body>
