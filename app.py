@@ -3,7 +3,6 @@ import json
 import getpass
 import httplib2
 from flask import Flask, request, render_template, jsonify
-from datetime import datetime
 app = Flask(__name__)
 
 http = httplib2.Http()
@@ -14,7 +13,7 @@ def my_form():
 
 @app.route('/', methods=['POST'])
 def homepage():
-	the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+
 	DEBUG = 0
 	# endpoint
 	URL = 'http://111.93.164.203/CampusPortalSOA'
@@ -38,7 +37,7 @@ def homepage():
 		
 		logindata = json.loads(logincontent)
 		
-		htmlbody += 'Hello ' + logindata["name"] + '!<br>'
+		htmlbody = 'Hello ' + logindata["name"] + '!<br>'
 	
 		body = json.dumps({'registerationid':reglov})
 
