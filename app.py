@@ -15,7 +15,7 @@ body = 0
 
 @app.route('/')
 def my_form():
-	return render_template('login.html', error=0)
+	return render_template('login.html', msghandler=0)
 
 @app.route('/', methods=['POST'])
 def homepage():
@@ -67,12 +67,11 @@ def homepage():
 		return (htmlcontent)
 	else:
 		error = 1
-		return render_template('login.html', error=error)
+		return render_template('login.html', msghandler=error)
 	
 @app.route('/logout')
 def logout():
-	response, logoutcontent = http.request(URL + '/logout', 'GET')
-  	return render_template('login.html', error=0)
+  	return render_template('login.html', msghandler=2)
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
