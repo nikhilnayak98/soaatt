@@ -72,7 +72,8 @@ def homepage():
 	
 @app.route('/logout')
 def logout():
-  	return redirect(url_for(my_form, msghandler=2))
+	msghandler = 2
+  	return redirect(url_for(my_form, msghandler))
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
