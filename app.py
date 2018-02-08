@@ -10,6 +10,7 @@ http = httplib2.Http()
 # endpoint parameters
 URL = 'http://111.93.164.203/CampusPortalSOA'
 reglov = 'ITERRETD1711A0000002'
+membertype = 's'
 headers = 0
 body = 0
 
@@ -33,7 +34,7 @@ def homepage():
 	username = request.form['username']
 	password = request.form['password']
 
-	body = json.dumps({'username':username,'password':password})
+	body = json.dumps({'username':username,'password':password,'MemberType':membertype})
 
 	headers = {'Content-type': 'application/json'}
 	response, logincontent = http.request(URL + '/login', 'POST', headers=headers, body=body)
