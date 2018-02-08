@@ -37,7 +37,7 @@ def homepage():
 		
 		logindata = json.loads(logincontent)
 		
-		htmlbody = 'Hello ' + logindata["name"].lower().title() + '!<br>'
+		htmlbody = '<h3>Hello ' + logindata["name"].lower().title() + '!</h3><br>'
 	
 		body = json.dumps({'registerationid':reglov})
 
