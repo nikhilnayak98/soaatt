@@ -86,7 +86,12 @@
     <div class="section"></div>
     <div class="section"></div>
   </main>
-
+  <script>
+    function errorHandler() {
+      var $toastContent = $('<span style="font-size:18px;font-style: normal;">Username or Password may be wrong!</span>');
+      Materialize.toast($toastContent, 4000, '', function(){console.log('Error');});
+    }
+  </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </body>
