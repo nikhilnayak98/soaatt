@@ -61,7 +61,8 @@ def homepage():
 		
 		response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	else:
-		return ("Username or Password may be wrong!")
+		error = '<script>Materialize.toast('Username or Password may be wrong!', 4000);</script>'
+		return render_template('login.html', error=error)
 		if(DEBUG):
 			print('Response Status - ', response.status)
 
