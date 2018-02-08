@@ -45,7 +45,7 @@ def homepage():
 		
 		# html body
 		htmlbody = '<h3>Hello ' + logindata["name"].lower().title() + '!</h3><br>'
-		htmlbody += '<img src="' + URL + '/AcademicInfo.png'  + '"></img>'
+		htmlbody += '<img src="' + URL + '/image/studentPhoto'  + '"></img>'
 	
 		body = json.dumps({'registerationid':reglov})
 
