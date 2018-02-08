@@ -7,6 +7,9 @@ app = Flask(__name__)
 
 http = httplib2.Http()
 
+# endpoint
+URL = 'http://111.93.164.203/CampusPortalSOA'
+reglov = 'ITERRETD1711A0000002'
 headers = 0
 body = 0
 
@@ -21,11 +24,6 @@ def logout():
 
 @app.route('/', methods=['POST'])
 def homepage():
-
-	DEBUG = 0
-	# endpoint
-	URL = 'http://111.93.164.203/CampusPortalSOA'
-	reglov = 'ITERRETD1711A0000002'
 	
 	# global var
 	global headers
@@ -34,6 +32,7 @@ def homepage():
 	# html content
 	htmlcontent = '<html> <head> <title>Attendance Info</title><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <link type="text/css" rel="stylesheet" href="static/material/css/materialize.css" media="screen,projection"/> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head> <body>'
 	
+	# html footer
 	htmlfooter = '</table><script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script type="text/javascript" src="static/material/js/materialize.js"></script> </body> </html>'
 
 	username = request.form['username']
@@ -49,6 +48,7 @@ def homepage():
 		
 		logindata = json.loads(logincontent)
 		
+		# html body
 		htmlbody = '<h3>Hello ' + logindata["name"].lower().title() + '!</h3><br>'
 	
 		body = json.dumps({'registerationid':reglov})
@@ -73,8 +73,6 @@ def homepage():
 	else:
 		error = 1
 		return render_template('login.html', error=error)
-		if(DEBUG):
-			print('Response Status - ', response.status)
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
