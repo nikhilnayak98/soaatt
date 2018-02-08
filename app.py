@@ -7,9 +7,6 @@ app = Flask(__name__)
 
 http = httplib2.Http()
 
-headers = 0
-body = 0
-
 @app.route('/')
 def my_form():
 	return render_template('login.html', error=0)
