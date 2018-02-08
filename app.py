@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 http = httplib2.Http()
 
-# endpoint
+# endpoint parameters
 URL = 'http://111.93.164.203/CampusPortalSOA'
 reglov = 'ITERRETD1711A0000002'
 headers = 0
@@ -71,7 +71,7 @@ def homepage():
 	
 @app.route('/logout')
 def logout():
-	# response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+	response, logoutcontent = http.request(URL + '/logout', 'GET', headers, body)
   	return render_template('login.html', error=0)
 
 if __name__ == '__main__':
