@@ -71,9 +71,7 @@ def homepage():
 	
 @app.route('/logout')
 def logout():
-	global headers
-	global body
-	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
+	response, logoutcontent = http.request(URL + '/logout', 'GET')
   	return render_template('login.html', error=0)
 
 if __name__ == '__main__':
