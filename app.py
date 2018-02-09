@@ -1,4 +1,3 @@
-import sys
 import json
 import base64
 import getpass
@@ -41,8 +40,6 @@ def homepage():
 	response, logincontent = http.request(URL + '/login', 'POST', headers=headers, body=body)
 		
 	if(len(logincontent) > 112):
-		print('Login Successful!')
-		
 		logindata = json.loads(logincontent)
 		name = logindata["name"].lower().title()
 		body = json.dumps({'registerationid':reglov})
@@ -54,8 +51,9 @@ def homepage():
 		image = str(base64.b64encode(image).decode("utf-8"))
 		
 		data = json.loads(attendancecontent)
+		jsondata = json.dumps(data["griddata"], sort_keys=True, indent=4)
 		
-		return render_template('attendance.html', data=data["griddata"], name=name, image=image)
+		return render_template('attendance.html', data=data["griddata"], jsondata=jsondata, name=name, image=image)
 	else:
 		error = 1
 		return render_template('login.html', msghandler=error)
