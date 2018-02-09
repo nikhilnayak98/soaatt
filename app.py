@@ -3,7 +3,7 @@ import base64
 import getpass
 import httplib2
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 app = Flask(__name__)
 
 http = httplib2.Http()
@@ -23,6 +23,50 @@ def my_form():
 def logout():
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	return render_template('login.html', msghandler=2)
+
+@app.route('/admitcard')
+def get_pdf():
+
+	# global var
+	global headers
+	global body
+	global name
+	global username
+	
+	# get course details
+	response, course = http.request(URL + '/stdrst', 'POST', headers=headers, body='')
+	course = json.loads(course)
+	programdesc = course["info"][0]["programdesc"]
+	branchdesc = course["info"][0]["branchdesc"]
+	lateralentry = course["info"][0]["lateralentry"]
+	
+	# get exam type id
+	response, examtype = http.request(URL + '/examtype', 'POST', headers=headers, body=body)
+	examtype = json.loads(examtype)
+	exam = examtype["studentdata"][1]["EXAMTYPEID"]
+	
+	#get exam event id
+	body = json.dumps({'examid':exam,'regid':reglov})
+	response, examidi = http.request(URL + '/exameventtype', 'POST', headers=headers, body=body)
+	exameventid = json.loads(examidi)
+	exameventid = exameventid["studentdata"][0]["EXAMEVENTID"]
+	
+	# download file
+	body = json.dumps({'examid':reglov,
+						'regid':reglov,
+						'exameventid':exameventid,
+						'studentname':name,
+						'enrollmentno':username,
+						'programdesc': programdesc,
+						'branchdesc':branchdesc,
+						'lateralentry':lateralentry})
+	
+	response, studentdata = http.request(URL + '/downExameSchedulepdf', 'POST', headers=headers, body=body)
+	response = make_response(studentdata)
+	response.headers['Content-Type'] = 'application/pdf'
+	response.headers['Content-Disposition'] = \
+		'inline; filename=AdmitCard.pdf'
+	return response
 
 @app.route('/home', methods=['POST'])
 def homepage():
