@@ -30,8 +30,6 @@ def get_pdf():
 	# global var
 	global headers
 	global body
-	global name
-	global username
 	
 	# get course details
 	response, course = http.request(URL + '/stdrst', 'POST', headers=headers, body='')
@@ -39,6 +37,8 @@ def get_pdf():
 	programdesc = course["info"][0]["programdesc"]
 	branchdesc = course["info"][0]["branchdesc"]
 	lateralentry = course["info"][0]["lateralentry"]
+	name = course["info"][0]["name"]
+	username = course["info"][0]["enrollmentno"]
 	
 	# get exam type id
 	response, examtype = http.request(URL + '/examtype', 'POST', headers=headers, body=body)
