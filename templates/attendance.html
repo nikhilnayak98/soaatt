@@ -8,7 +8,14 @@
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection">
 	<link href="static/prism/prism.css" rel="stylesheet" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-</head> 
+</head>
+<style>
+.collapsible li.active i {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+</style>
 <body>
 <div class="navbar-fixed">
   <nav>
@@ -17,14 +24,14 @@
       <ul class="right hide-on-med-and-down">
         <li>
         	<a href="./logout">
-				LOGOUT
+				Sign out<i class="material-icons left">exit_to_app</i>
 			</a>
         </li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li>
         	<a href="./logout">
-				LOGOUT
+				Sign out<i class="material-icons right">exit_to_app</i>
 			</a>
         </li>
       </ul>
@@ -52,6 +59,7 @@
 			<li>
             	<div class="collapsible-header">
                 	<b style="float:left;">
+                	<i class="material-icons">keyboard_arrow_down</i>
                 		{% if v["subject"]|length > 30 %}
                 			{{	v["subject"][:30] }}..
                 		{% else %}
@@ -84,6 +92,9 @@
 	</center>
 	
 	<div class="container">
+	<center>
+		<h4>Json Data</h4>
+	</center>
 		<pre>
 			<code class="language-json">
 				{{ jsondata }}

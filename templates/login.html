@@ -23,6 +23,7 @@
     }
 
     .input-field input[type=date]:focus + label,
+    .input-field input[type=number]:focus + label,
     .input-field input[type=text]:focus + label,
     .input-field input[type=email]:focus + label,
     .input-field input[type=password]:focus + label {
@@ -30,12 +31,23 @@
     }
 
     .input-field input[type=date]:focus,
+    .input-field input[type=number]:focus,
     .input-field input[type=text]:focus,
     .input-field input[type=email]:focus,
     .input-field input[type=password]:focus {
       border-bottom: 2px solid #004d40;
       box-shadow: none;
     }
+    
+    input[type=number] {
+    	-moz-appearance:textfield;
+	}
+
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+    	-webkit-appearance: none;
+    	margin: 0;
+	}
   </style>
 </head>
 
@@ -60,7 +72,7 @@
             <div class='row'>
               <div class='input-field col s12'>
                 <i class="mdi-social-person-outline prefix"></i>
-                <input class='validate' type='text' name='username' id='email' />
+                <input class='validate' type='number' name='username' id='email' autocomplete='off' required/>
                 <label for='email'>Username</label>
               </div>
             </div>
@@ -68,7 +80,7 @@
             <div class='row'>
               <div class='input-field col s12'>
                 <i class="mdi-action-lock-outline prefix"></i>
-                <input class='validate' type='password' name='password' id='password' />
+                <input class='validate' type='password' name='password' id='password' autocomplete='off' required/>
                 <label for='password'>Password</label>
               </div>
             </div>
