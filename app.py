@@ -23,10 +23,23 @@ def my_form():
 def logout():
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
 	return render_template('login.html', msghandler=2)
+	
+@app.route('/schedule')
+def schedule():
+	# global var
+	global headers
+	global body
+	
+	body = json.dumps({'regid':reglov})
+	response, scheduledata = http.request(URL + '/timetable', 'POST', headers=headers, body=body)
+	response = make_response(scheduledata)
+	response.headers['Content-Type'] = 'application/pdf'
+	response.headers['Content-Disposition'] = \
+		'inline; filename=Schedule.pdf'
+	return response
 
 @app.route('/admitcard')
 def get_pdf():
-
 	# global var
 	global headers
 	global body
@@ -70,7 +83,6 @@ def get_pdf():
 
 @app.route('/home', methods=['POST'])
 def homepage():
-	
 	# global var
 	global headers
 	global body
