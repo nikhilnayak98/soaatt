@@ -1,20 +1,49 @@
-<style>
-   table, th, td {
-   border: 1px solid black;
-}
-</style>
-<table >
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Attendance Info</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head> 
+<body>
+	<h3>Hello {{ name }}!</h3><br><img src="data:image/jpeg;base64, {{ image }} ">
+	<center>
+	<div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+	<table class="bordered">
         <tr>
                 <th>Subject</th>
-                <th>Attendance</th>
+                <th>Theory</th>
+                <th>Lab</th>
+                <th>Percentage</th>
+                <th>Last updated on</th>
         </tr>
-        {% for k, v in data.items() %}
-                    {% for i, j in v %}
+        	{% for v in data %}
 
                 <tr>
-                        <td>{{ i[0] }}</td>
-                        <td>{{ j[0] }}</td>
+                        <td>{{ v["subject"] }}</td>
+                        <td>{{ v["Latt"] }}</td>
+                        <td>{{ v["Patt"] }}</td>
+                        <td>{{ v["TotalAttandence"] }}%</td>
+                        <td>{{ v["lastupdatedon"] }}</td>
                 </tr>
-                     {% endfor %}
-        {% endfor %}
-</table>
+        	{% endfor %}
+	</table>
+	</div>
+	</center>
+	<div class="fixed-action-btn">
+		<a class="btn-floating btn-large red" href="./logout">
+			<i class="large material-icons">backspace</i>
+		</a>
+		<ul>
+			<div class="chip">
+				Logout
+			</div>
+		</ul>
+	</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<div class="hiddendiv common"></div>
+</body>
+</html>
