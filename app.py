@@ -21,7 +21,7 @@ def my_form():
 	
 @app.route('/logout')
 def logout():
-	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers)
+	response, logoutcontent = http.request(URL + '/logout', 'POST', headers=headers, body=body)
 	return render_template('login.html', msghandler=2)
 	
 @app.route('/schedule')
