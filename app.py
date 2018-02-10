@@ -21,7 +21,14 @@ def my_form():
 	
 @app.route('/logout')
 def logout():
+	# global var
+	global headers
+	global body
+	
 	response, logoutcontent = http.request(URL + '/logout', 'POST', headers=headers, body=body)
+	headers = {'Cookie': ''}
+	# headers = 0
+	body= 0
 	return render_template('login.html', msghandler=2)
 	
 @app.route('/schedule')
