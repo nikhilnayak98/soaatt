@@ -107,9 +107,8 @@ def homepage():
 		name = logindata["name"].lower().title()
 		body = json.dumps({'registerationid':reglov})
 
-		headers = {'Cookie': response['set-cookie']}
+		headers = {'Cookie': response['set-cookie'], 'cache‐control' : 'no‐cache'}
 		response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
-		response.headers['Cache-Control'] = 'no-cache'
 		
 		resp, image = http.request(URL + '/image/studentPhoto', 'GET', headers=headers)
 		image = str(base64.b64encode(image).decode("utf-8"))
