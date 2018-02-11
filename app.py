@@ -96,7 +96,7 @@ def homepage():
 
 	body = json.dumps({'username':username,'password':password,'MemberType':membertype})
 
-	headers = {'Content-type': 'application/json','cache-control':'no-cache'}
+	headers = {'Content-type': 'application/json'}
 	response, logincontent = http.request(URL + '/login', 'POST', headers=headers, body=body)
 		
 	if(len(logincontent) > 112):
