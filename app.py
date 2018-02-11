@@ -22,7 +22,7 @@ def my_form(msghandler=0):
 @app.route('/logout')
 def logout():
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
-	return redirect(url_for('my_form',msghandler=2))
+	return redirect(url_for('my_form','2'))
 	
 @app.route('/schedule')
 def schedule():
