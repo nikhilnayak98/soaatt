@@ -6,7 +6,7 @@ import httplib2
 from flask import Flask, request, render_template, make_response, redirect, url_for
 app = Flask(__name__)
 
-http = httplib2.Http(".cache")
+http = httplib2.Http()
 
 # endpoint parameters
 URL = 'http://111.93.164.202:8282/CampusPortalSOA'
@@ -107,7 +107,7 @@ def homepage():
 		headers = {'Cookie': response['set-cookie']}
 		response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
 		
-		response = make_response(scheduledata)
+		response = make_response(attendancecontent)
 		response.headers['Cache-Control'] = 'no-cache'
 		
 		resp, image = http.request(URL + '/image/studentPhoto', 'GET', headers=headers)
