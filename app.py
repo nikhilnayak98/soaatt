@@ -16,6 +16,7 @@ headers = 0
 body = 0
 
 @app.route('/')
+@app.route('/index')
 def my_form():
 	return render_template('login.html', msghandler=0)
 	
@@ -28,7 +29,7 @@ def logout():
 	response, logoutcontent = http.request(URL + '/logout', 'POST', headers=headers, body=body)
 	headers = 0
 	body= 0
-	return render_template('login.html', msghandler=2)
+	return redirect(url_for('index'))
 	
 @app.route('/schedule')
 def schedule():
