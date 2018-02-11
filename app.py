@@ -3,7 +3,7 @@ import base64
 import getpass
 import httplib2
 
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response, redirect
 app = Flask(__name__)
 
 http = httplib2.Http()
