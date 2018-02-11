@@ -97,9 +97,8 @@ def homepage():
 
 	body = json.dumps({'username':username,'password':password,'MemberType':membertype})
 
-	headers = {'Content-type': 'application/json'}
+	headers = {'Content-type': 'application/json','cache-control':'no-cache'}
 	response, logincontent = http.request(URL + '/login', 'POST', headers=headers, body=body)
-	response.headers['Cache-Control'] = 'no-cache'
 		
 	if(len(logincontent) > 112):
 		logindata = json.loads(logincontent)
@@ -108,7 +107,6 @@ def homepage():
 
 		headers = {'Cookie': response['set-cookie']}
 		response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
-		response.headers['Cache-Control'] = 'no-cache'
 		
 		resp, image = http.request(URL + '/image/studentPhoto', 'GET', headers=headers)
 		image = str(base64.b64encode(image).decode("utf-8"))
