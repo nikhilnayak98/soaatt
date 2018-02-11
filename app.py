@@ -17,12 +17,12 @@ body = 0
 
 @app.route('/')
 def my_form(msghandler=0):
-	return render_template('login.html', msghandler)
+	return render_template('login.html', msghandler=msghandler)
 	
 @app.route('/logout')
 def logout():
 	response, logoutcontent = http.request(URL + '/logout', 'GET', headers=headers, body=body)
-	return redirect(url_for('my_form','2'))
+	return redirect(url_for('my_form',msghandler=2))
 	
 @app.route('/schedule')
 def schedule():
