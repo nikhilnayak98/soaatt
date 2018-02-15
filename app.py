@@ -1,4 +1,4 @@
-# will be deprecated soon, expected - 18th Feb 2018
+# deprecatation expected - 22nd Feb 2018
 import json
 import base64
 import getpass
