@@ -9,7 +9,7 @@ app = Flask(__name__)
 http = httplib2.Http()
 
 # endpoint parameters
-URL = 'http://111.93.164.202:8282/CampusPortalSOA'
+URL = 'http://111.93.164.90:8282/CampusPortalSOA'
 reglov = 'ITERRETD1711A0000002'
 membertype = 's'
 headers = 0
