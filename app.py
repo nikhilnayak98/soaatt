@@ -56,7 +56,7 @@ def get_pdf():
 	# get exam type id
 	response, examtype = http.request(URL + '/examtype', 'POST', headers=headers, body=body)
 	examtype = json.loads(examtype)
-	exam = examtype["studentdata"][1]["EXAMTYPEID"]
+	exam = examtype["studentdata"][0]["EXAMTYPEID"]
 	
 	#get exam event id
 	body = json.dumps({'examid':exam,'regid':reglov})
