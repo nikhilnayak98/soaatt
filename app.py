@@ -1,4 +1,3 @@
-# deprecatation expected - 22nd Feb 2018
 import json
 import base64
 import getpass
@@ -21,11 +20,6 @@ def my_form():
 	
 @app.route('/logout')
 def logout():
-	global headers
-	global body
-	
-	body = ''
-	headers = ''
 	response, logoutcontent = http.request(URL + '/logout', 'POST', headers=headers, body=body)
 	return redirect(url_for('my_form'))
 	
