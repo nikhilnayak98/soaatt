@@ -8,7 +8,12 @@ app = Flask(__name__)
 http = httplib2.Http()
 
 # endpoint parameters
-URL = 'http://111.93.164.90:8282/CampusPortalSOA'
+# extract portal address from the website
+r = requests.get('http://www.soa.ac.in/iter')
+s1 = r.text
+s2 = s1.replace(s1[:s1.find('http://1')],'')
+s3 = s2.replace(s2[:s2.find('/i')],'')
+URL = s2.replace(s3,'')
 reglov = 'ITERRETD1711A0000002'
 membertype = 'S'
 headers = 0
