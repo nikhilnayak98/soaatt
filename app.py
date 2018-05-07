@@ -1,7 +1,4 @@
-import json
-import base64
-import getpass
-import httplib2
+import json, base64, getpass, httplib2, requests
 from flask import Flask, request, render_template, make_response, redirect, url_for
 app = Flask(__name__)
 
