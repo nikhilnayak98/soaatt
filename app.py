@@ -10,7 +10,7 @@ http = httplib2.Http()
 # endpoint parameters
 URL = 'http://111.93.164.90:8282/CampusPortalSOA'
 reglov = 'ITERRETD1711A0000002'
-membertype = 's'
+membertype = 'S'
 headers = 0
 body = 0
 
