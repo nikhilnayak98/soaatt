@@ -5,7 +5,7 @@ app = Flask(__name__)
 http = httplib2.Http()
 
 # endpoint parameters
-# extract portal address from the website
+# scrape portal address from the website
 r = requests.get('http://www.soa.ac.in/iter')
 s1 = r.text
 s2 = s1.replace(s1[:s1.find('http://1')],'')
