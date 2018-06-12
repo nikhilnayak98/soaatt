@@ -2,4 +2,5 @@ Flask
 httplib2
 gunicorn
 urllib3
+requests
 bs4
