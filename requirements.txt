@@ -1,4 +1,5 @@
 Flask
 httplib2
+gunicorn
 urllib3
 bs4
