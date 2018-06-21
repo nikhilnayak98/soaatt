@@ -7,6 +7,7 @@ http = httplib2.Http()
 
 # endpoint parameters
 URL = 0
+# sem reg id
 reglov = 'ITERRETD1711A0000002'
 membertype = 'S'
 headers = 0
