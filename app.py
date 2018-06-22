@@ -12,6 +12,7 @@ reglov = 'ITERRETD1711A0000002'
 membertype = 'S'
 headers = 0
 body = 0
+data_not_available = "Data for current semester is not available on the server yet."
 
 
 @app.route('/')
@@ -58,33 +59,38 @@ def get_pdf():
     name = course["info"][0]["name"]
     username = course["info"][0]["enrollmentno"]
 
-    # get exam type id
-    response, examtype = http.request(URL + '/examtype', 'POST', headers=headers, body=body)
-    examtype = json.loads(examtype)
-    exam = examtype["studentdata"][0]["EXAMTYPEID"]
+    try:
+        # get exam type id
+        response, examtype = http.request(URL + '/examtype', 'POST', headers=headers, body=body)
+        examtype = json.loads(examtype)
+        exam = examtype["studentdata"][0]["EXAMTYPEID"]
 
-    #get exam event id
-    body = json.dumps({'examid':exam,'regid':reglov})
-    response, examidi = http.request(URL + '/exameventtype', 'POST', headers=headers, body=body)
-    exameventid = json.loads(examidi)
-    exameventid = exameventid["studentdata"][0]["EXAMEVENTID"]
+        #get exam event id
+        body = json.dumps({'examid':exam,'regid':reglov})
+        response, examidi = http.request(URL + '/exameventtype', 'POST', headers=headers, body=body)
+        exameventid = json.loads(examidi)
+        exameventid = exameventid["studentdata"][0]["EXAMEVENTID"]
 
-    # download file
-    body = json.dumps({'examid':reglov,
-                       'regid':reglov,
-                       'exameventid':exameventid,
-                       'studentname':name,
-                       'enrollmentno':username,
-                       'programdesc': programdesc,
-                       'branchdesc':branchdesc,
-                       'lateralentry':lateralentry})
+        # download file
+        body = json.dumps({'examid':reglov,
+                           'regid':reglov,
+                           'exameventid':exameventid,
+                           'studentname':name,
+                           'enrollmentno':username,
+                           'programdesc': programdesc,
+                           'branchdesc':branchdesc,
+                           'lateralentry':lateralentry})
 
-    response, studentdata = http.request(URL + '/downExameSchedulepdf', 'POST', headers=headers, body=body)
-    response = make_response(studentdata)
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = \
-        'inline; filename=AdmitCard.pdf'
-    return response
+        response, studentdata = http.request(URL + '/downExameSchedulepdf', 'POST', headers=headers, body=body)
+        response = make_response(studentdata)
+        response.headers['Content-Type'] = 'application/pdf'
+        response.headers['Content-Disposition'] = \
+            'inline; filename=AdmitCard.pdf'
+        return response
+    except KeyError:
+        return data_not_available
+    except AttributeError:
+        return "Refresh this web page"
 
 
 @app.route('/details')
@@ -131,7 +137,7 @@ def homepage():
             return render_template('attendance.html', data=data["griddata"], jsondata=jsondata, name=name, image=image)
         except KeyError:
             return render_template('attendance_null.html',
-                                   data="Data for current semester is not yet available on the server",
+                                   data=data_not_available,
                                    jsondata=data,
                                    name=name,
                                    image=image)
