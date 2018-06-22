@@ -7,7 +7,7 @@ http = httplib2.Http()
 
 # endpoint parameters
 URL = 0
-# sem reg id
+# default reglov
 reglov = 'ITERRETD1711A0000002'
 membertype = 'S'
 headers = 0
@@ -21,8 +21,11 @@ def my_form():
 
 @app.route('/logout')
 def logout():
-    response, logoutcontent = http.request(URL + '/logout', 'POST', headers=headers, body=body)
-    return redirect(url_for('my_form'))
+    try:
+        response, logoutcontent = http.request(URL + '/logout', 'POST', headers=headers, body=body)
+        return redirect(url_for('my_form'))
+    except AttributeError:
+        return redirect(url_for('my_form'))
 
 
 @app.route('/schedule')
@@ -94,6 +97,7 @@ def homepage():
     # global var
     global headers
     global body
+    global reglov
 
     username = request.form['username']
     password = request.form['password']
@@ -106,18 +110,31 @@ def homepage():
     if(len(logincontent) > 112):
         logindata = json.loads(logincontent)
         name = logindata["name"].lower().title()
-        body = json.dumps({'registerationid':reglov})
 
         headers = {'Cookie': response['set-cookie']}
+
+        # get current sem id
+        resp, semcontent = http.request(URL + '/studentSemester/lov', 'POST', headers=headers, body="")
+        semcontent = json.loads(semcontent)
+        reglov = semcontent['studentdata'][0]['REGISTRATIONID']
+
+        body = json.dumps({'registerationid': reglov})
+
         response, attendancecontent = http.request(URL + '/attendanceinfo', 'POST', headers=headers, body=body)
 
         resp, image = http.request(URL + '/image/studentPhoto', 'GET', headers=headers)
         image = str(base64.b64encode(image).decode("utf-8"))
 
         data = json.loads(attendancecontent)
-        jsondata = json.dumps(data["griddata"], sort_keys=True, indent=4)
-
-        return render_template('attendance.html', data=data["griddata"], jsondata=jsondata, name=name, image=image)
+        try:
+            jsondata = json.dumps(data["griddata"], sort_keys=True, indent=4)
+            return render_template('attendance.html', data=data["griddata"], jsondata=jsondata, name=name, image=image)
+        except KeyError:
+            return render_template('attendance_null.html',
+                                   data="Data for current semester is not yet available on the server",
+                                   jsondata=data,
+                                   name=name,
+                                   image=image)
     else:
         error = 1
         return render_template('login.html', msghandler=error)
