@@ -1,9 +1,12 @@
 import json, base64, httplib2, requests, re
+import flask_monitoringdashboard as dashboard
 from bs4 import BeautifulSoup
 from flask import Flask, request, render_template, make_response, redirect, url_for
+
 app = Flask(__name__)
 
 http = httplib2.Http()
+dashboard.bind(app)
 
 # endpoint parameters
 URL = 0
