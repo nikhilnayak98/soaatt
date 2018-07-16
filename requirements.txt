@@ -4,3 +4,4 @@ gunicorn
 urllib3
 requests
 bs4
+flask_monitoringdashboard
