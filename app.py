@@ -6,6 +6,7 @@ from flask import Flask, request, render_template, make_response, redirect, url_
 app = Flask(__name__)
 
 http = httplib2.Http()
+dashboard.config.init_from(file='config.cfg')
 dashboard.bind(app)
 
 # endpoint parameters
