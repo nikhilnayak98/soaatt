@@ -9,7 +9,7 @@ http = httplib2.Http()
 dashboard.bind(app)
 
 # endpoint parameters
-URL = 0
+URL = 'http://111.93.164.90:8282/CampusPortalSOA'
 # default reglov
 reglov = 'ITERRETD1711A0000002'
 membertype = 'S'
@@ -159,6 +159,7 @@ def check_ip(address):
 
 
 # scrape portal address from the website
+'''
 r = requests.get('http://www.soa.ac.in/iter')
 soup = BeautifulSoup(r.text, "html.parser")
 for link in soup.find_all('a'):
@@ -167,7 +168,7 @@ for link in soup.find_all('a'):
         if URL.endswith('index#/'):
             URL = URL[:-8]
         break
-
+'''
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
